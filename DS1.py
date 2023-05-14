@@ -52,3 +52,48 @@ def GetCount(user):
 user_and_friends_sorted = sorted(user_and_friends, key = GetCount, reverse = True)
 
 print('\nОтсортированный список из кортежей (id, число друзей):\n', user_and_friends_sorted)
+
+print('--------')
+total_connections = sum(GetCountOfFriends(user) for user in users)
+print(total_connections)
+
+print('--------')
+num_users = len(users)
+avg_connection = total_connections / num_users
+print(avg_connection)
+
+'''
+Задача: разработать систему рекомендаций друзей
+'''
+
+# есть ли otheruser в друзьях у user
+def isFriend(user, otheruser):
+    if otheruser['name'] in user['friends']:
+        return True
+    else:
+        return False
+
+# посчитать кол-во общих друзей между otheruser и user
+def GetNumberOfFriend(user, otheruser):
+    count = 0
+    for name in user['friends']:
+        if name in otheruser['friends']:
+            count += 1
+    return count
+
+def RecomendationOfFriends(user):
+    recom_list = []
+    '''найти всех пользователей из users, у которых есть общие друзья с пользователем user, но которые 
+    сами не являются пользователем user и не состоят у него в друзьях. (возможные друзья нужны).
+    Поместить их в список recom_list
+    '''
+    for otheruser in users:
+        if ((otheruser["id"] != user["id"]) & ~(isFriend(user, otheruser)) & (GetNumberOfFriend(user, otheruser) != 0)):
+                                                            # условия, что id user и otheruser не совпадают,
+                                                            # и условие, что otheruser не является другом (~ значит не)
+            otheruserWithCommonFriend = (otheruser['name'], GetNumberOfFriend(user, otheruser))
+            recom_list.append(otheruserWithCommonFriend)
+    return recom_list
+
+user_test = users[3]
+print('Возможные друзья для ', user_test['name'], RecomendationOfFriends(user_test))
