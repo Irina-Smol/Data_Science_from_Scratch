@@ -7,3 +7,6 @@ https://vk.com/doc7608079_662238326?hash=FAPUIzuZICVazY3NVoUdPNuUbjlRuzHhYOXZCL3
 https://vk.com/doc10943591_582975373?hash=C4zYV5cZngifGuNfyaiiV0xGvSBEz7lzx9TJiUQJZ2D&dl=keUVI10Kr4vNMZ1HDF6O54ah89qBrE5uEffvbx7IpWw
 
 page 63
+ Пайплайн обучения позволяет
+получить высококачественную модель, а пайплайн инференса обеспечивает
+поставку результатов пользователям. 
